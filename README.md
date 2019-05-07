@@ -1,2 +1,2 @@
-# play-blog.github.io
+# play-blog.github.com
 play-blog.ru
