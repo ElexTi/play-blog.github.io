@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<link rel="shortcut icon" href="../images/devil-dog-png-5.png" type="image/png">
+<head><title>Тайный Квест №1</title>
+<meta charset="utf-8">
+<style>
+	body{
+		background: url(http://htmlbook.ru/files/images/html5/canvas05.png);
+	}	
+p, span, input {
+ font-size:24px;
+}
+button{
+    font-size:18px;
+}
+#vo {
+    color:green;
+}
+#nvo {
+    color:red;
+}
+#ot {
+    color:blue;
+}
+</style>
+</head>
+<body>
+<div style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
+<p><span id="tema"></span></p>
+<div id="vopros1" style="display:block;">
+<p>Кому принадлежал меч Экскалибур?</p>
+<p><span id="v_1"></span> <input type="text" id="z_1"></p>
+</div>
+<div id="vopros2" style="display:none;">
+<p>Когда погиб король Артур?</p>
+<p><span id="v_2"></span> <input type="text" id="z_2"></p>
+</div>
+<div id="vopros3" style="display:none;">
+<p>Где выковали Экскалибур?</p>
+<p><span id="v_3"></span> <input type="text" id="z_3"></p>
+</div>
+<button id="kn_sl" onclick="sled_vopr();">Следующий вопрос</button>
+<button id="kn_pr" style="display:none;" onclick="proverit();">Проверить</button>
+<div id="rezultat"></div>
+</div>
+<script>
+function showMessage() {
+message = 'Вы приступаете к выполнению "Тайного Квеста №1". Вы согласны?';
+}
+showMessage();
+
+alert( message );
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('v_1').innerHTML = vopros_1;
+    document.getElementById('v_2').innerHTML = vopros_2;
+    document.getElementById('v_3').innerHTML = vopros_3;
+    document.getElementById('tema').innerHTML = test;
+});
+function sled_vopr(){
+    if(document.getElementById('vopros2').style.display == "block"){
+        document.getElementById('vopros2').style.display = "none";
+        document.getElementById('vopros3').style.display = "block";
+        document.getElementById('kn_sl').style.display = "none";
+        document.getElementById('kn_pr').style.display = "block";
+        document.getElementById('kn_fr').style.display = "block";
+    }
+    if(document.getElementById('vopros1').style.display == "block"){
+        document.getElementById('vopros1').style.display = "none";
+        document.getElementById('vopros2').style.display = "block";
+    }
+}
+var test = "Тайное Задание №1";
+var vopros_1 = "";
+var vopros_2 = "";
+var vopros_3 = "";
+ var pr_otv_zadachi_1 = "Артур";  //ВОТ ЭТО ОТВЕТЫ НА ВОПРОСЫ
+var pr_otv_zadachi_2 = "542";  //ВОТ ЭТО ОТВЕТЫ НА ВОПРОСЫ
+var pr_otv_zadachi_3 = "Авалон";  //ВОТ ЭТО ОТВЕТЫ НА ВОПРОСЫ
+function proverit(){
+otv_uch_1 = document.getElementById('z_1').value;
+otv_ucgenika_1 = otv_uch_1;
+otv_uch_1 = (otv_uch_1);
+otv_uch_2 = document.getElementById('z_2').value;
+otv_ucgenika_2 = otv_uch_2;
+otv_uch_2 = (otv_uch_2);
+otv_uch_3 = document.getElementById('z_3').value;
+otv_ucgenika_3 = otv_uch_3;
+otv_uch_3 = (otv_uch_3);
+ball = 0;
+document.getElementById('vopros3').style.display = "none";
+document.getElementById('kn_pr').style.display = "none";
+if(otv_uch_1 == pr_otv_zadachi_1){
+    ball +=1;
+    otveti = "<span id='vo'>Вопрос 1. Вы ответили верно. Ваш ответ: "+otv_ucgenika_1+"</span>";
+} else {
+    otveti = "<span id='nvo'>Вопрос 1. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_1+"</span>"; 
+}
+if(otv_uch_2 == pr_otv_zadachi_2){
+    ball +=1;
+    otveti += "<br><span id='vo'>Вопрос 2. Вы ответили верно. Ваш ответ: "+otv_ucgenika_2+"</span>";
+} else {
+    otveti += "<br><span id='nvo'>Вопрос 2. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_2+"</span>"; 
+}
+if(otv_uch_3 == pr_otv_zadachi_3){
+    ball +=1;
+    otveti += "<br><span id='vo'>Вопрос 3. Вы ответили верно. Ваш ответ: "+otv_ucgenika_3+"</span>";
+} else {
+    otveti += "<br><span id='nvo'>Вопрос 3. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_3+"</span>";
+}
+vsego_zadach = 3;
+procent_vip = ball/vsego_zadach * 100;
+procent_vip = procent_vip.toFixed();
+document.getElementById('rezultat').innerHTML = "<span id='ot'>Задания выполнены верно на "+procent_vip+"%.</span><br><br>"+otveti;
+}
+</script>
+<a href="../myquests.html"><img style="transform: rotate(260deg); height: 450px; margin-left: 500px;" src="../images/excalibur.magic.png"></a>
+</body>
+</html>
